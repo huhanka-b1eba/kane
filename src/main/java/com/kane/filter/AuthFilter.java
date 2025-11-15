@@ -46,13 +46,11 @@ public class AuthFilter implements Filter {
         String path = req.getServletPath();
         System.out.println(">>> FILTER PATH = " + path);
 
-        // пропускаем статику
         if (path.startsWith("/static/")) {
             chain.doFilter(request, response);
             return;
         }
 
-        // публичные страницы
         boolean isPublic = PUBLIC_URLS.stream().anyMatch(path::startsWith);
 
         HttpSession session = req.getSession(false);
@@ -63,8 +61,6 @@ public class AuthFilter implements Filter {
             System.out.println("User in session: " + session.getAttribute("user"));
         }
 
-
-        // если URL не публичный и не авторизован — редирект
         if (!isPublic && !loggedIn) {
             res.sendRedirect(req.getContextPath() + "/login");
             return;

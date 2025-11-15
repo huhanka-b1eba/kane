@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
-    /* --- Modal & Form --- */
     const modal = document.getElementById("modal");
     const addBtn = document.getElementById("addBtn");
     const closeBtn = document.getElementById("closeModalBtn");

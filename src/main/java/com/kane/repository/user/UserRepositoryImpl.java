@@ -55,19 +55,13 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
-    @Override
-    public void validateUser(String email, String password) {
-        // Реализация, если нужна
-    }
 
     @Override
     public void updateProfile(long userId, String username, String email, String passwordHash) {
         String sql;
         if (passwordHash == null) {
-            // Обновляем без пароля
             sql = "UPDATE users SET username = ?, email = ? WHERE id = ?";
         } else {
-            // Обновляем с паролем
             sql = "UPDATE users SET username = ?, email = ?, password_hash = ? WHERE id = ?";
         }
 
